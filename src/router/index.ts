@@ -13,6 +13,11 @@ const router = createRouter({
       path: '/compare-countries',
       name: 'compare',
       component: () => import('../views/CompareView.vue')
+    },
+    {
+      path: '/country-details',
+      name: 'country-details',
+      component: () => import('../views/CountryView.vue')
     }
   ]
 })
