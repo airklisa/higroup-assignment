@@ -45,18 +45,18 @@ const countriesStore = useCountriesStore()
 </script>
 
 <template>
-  <div class="country-card">
-    <div class="country-card-content">
+  <div class="country-details">
+    <div class="country-details-content">
+      <h1>{{ name }}</h1>
       <img :src="flag" :alt="name" />
-      <p><span>Name:</span> {{ name }}</p>
       <p><span>Region:</span> {{ region }}</p>
       <p><span>Population:</span> {{ population }}</p>
-      <p><span>Capital:</span> {{ currencies.join(', ') }}</p>
+      <p><span>Capital:</span> {{ capital.join(', ') }}</p>
       <p><span>Area:</span> {{ area }}km²</p>
       <p><span>Currencies:</span> {{ currencies.join(', ') }}</p>
       <p><span>Languages:</span> {{ languages.join(', ') }}</p>
       <p>
-        <span>Neighbors:</span>
+        <span>Neighbors: </span>
         <RouterLink
           v-if="neighbors.length"
           :to="`/country/${item}`"
@@ -64,8 +64,12 @@ const countriesStore = useCountriesStore()
           :key="index"
           >{{ countriesStore.getCountryNameByCode(item) }}
         </RouterLink>
-        <span v-else> None</span>
+        <span v-else class="none"> None</span>
       </p>
     </div>
   </div>
 </template>
+
+<style scoped lang="scss">
+@import '../assets/scss/components/country-details';
+</style>
