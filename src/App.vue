@@ -2,6 +2,8 @@
 import { onMounted } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { useCountriesStore } from '@/stores/countries'
+import TheHeader from '@/components/TheHeader.vue'
+import TheFooter from '@/components/TheFooter.vue'
 
 const countriesStore = useCountriesStore()
 
@@ -12,16 +14,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/compare">Compare</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <TheHeader />
 
-  <RouterView />
+  <div class="router-view-wrapper">
+    <RouterView />
+  </div>
+
+  <TheFooter />
 </template>
 
 <style lang="scss">

@@ -1,0 +1,35 @@
+@import '../core/variables';
+
+header {
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span.logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: $color-main;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    gap: 3.5rem;
+
+    nav {
+      display: flex;
+      gap: 1rem;
+
+      a {
+        font-size: 1rem;
+        font-weight: 500;
+        color: $color-black;
+
+        &:hover {
+          color: $color-main;
+          border-bottom: 1px solid $color-main;
+        }
+      }
+    }
+  }
+}
