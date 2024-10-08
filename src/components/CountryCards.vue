@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, type ComputedRef } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCountriesStore } from '@/stores/countries'
 import type { Country } from '@/types/country.type'
@@ -8,9 +8,7 @@ import CountryCard from '@/components/CountryCard.vue'
 const countriesStore = useCountriesStore()
 const router = useRouter()
 
-const countries = computed(() => {
-  return countriesStore.getFilteredCountries()
-})
+const countries = computed<Country[]>(() => countriesStore.getPaginatedCountries())
 
 const navigateToCountry = (country: Country) => {
   router.push({
