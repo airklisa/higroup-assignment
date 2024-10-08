@@ -8,7 +8,9 @@ import CountryCard from '@/components/CountryCard.vue'
 const countriesStore = useCountriesStore()
 const router = useRouter()
 
-const countries: ComputedRef<Country[]> = computed(() => countriesStore.countries)
+const countries = computed(() => {
+  return countriesStore.getFilteredCountries()
+})
 
 const navigateToCountry = (country: Country) => {
   router.push({

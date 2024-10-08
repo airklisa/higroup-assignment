@@ -1,0 +1,21 @@
+@import '../core/variables';
+
+.search {
+  display: flex;
+  justify-content: center;
+
+  .search-input {
+    padding: 10px;
+    font-size: 1.2em;
+    width: 75%;
+    border: 1px solid $color-gray;
+    border-radius: 10px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: $color-main;
+      outline: none;
+    }
+  }
+}

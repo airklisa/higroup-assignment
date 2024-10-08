@@ -4,7 +4,8 @@ import type { Country } from '@/types/country.type'
 
 export const useCountriesStore = defineStore('countries', {
   state: () => ({
-    countries: [] as Country[]
+    countries: [] as Country[],
+    filteredCountries: [] as Country[]
   }),
   actions: {
     async fetchCountries() {
@@ -14,6 +15,12 @@ export const useCountriesStore = defineStore('countries', {
       this.countries = response.data.sort((a: Country, b: Country) =>
         a.name.common.localeCompare(b.name.common)
       )
+      this.filteredCountries = this.countries
+    },
+    filterCountriesByTerm(term: string) {
+      this.filteredCountries = this.countries.filter((country) =>
+        country.name.common.toLowerCase().includes(term.toLowerCase())
+      )
     }
   },
   getters: {
@@ -22,6 +29,9 @@ export const useCountriesStore = defineStore('countries', {
     },
     getCountryNameByCode: (state) => (code: string) => {
       return state.countries.find((country: Country) => country.cca3 === code)?.name.common
+    },
+    getFilteredCountries: (state) => () => {
+      return state.filteredCountries
     }
   }
 })
