@@ -9,7 +9,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['item-clicked'])
+const emit = defineEmits(['itemClicked'])
 
 const show: boolean = ref(false)
 const selectedOption: string = ref('')
@@ -19,12 +19,13 @@ const emitItemName = (item: string) => {
   show.value = false
 
   if (item !== selectedOption.value) {
-    emit('item-clicked', item)
+    emit('itemClicked', item)
     selectedOption.value = item
     return
   }
 
   selectedOption.value = ''
+  emit('itemClicked', selectedOption.value)
 }
 
 onClickOutside(targetRef, () => {
