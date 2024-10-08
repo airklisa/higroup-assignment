@@ -8,7 +8,7 @@ const countriesStore = useCountriesStore()
 onMounted(async () => {
   await countriesStore.fetchCountries()
   console.log('Fetched countries:', countriesStore.countries)
-}) // move this to App.vue
+})
 </script>
 
 <template>
@@ -24,4 +24,6 @@ onMounted(async () => {
   <RouterView />
 </template>
 
-<style scoped></style>
+<style lang="scss">
+@import './assets/scss/core/base';
+</style>
