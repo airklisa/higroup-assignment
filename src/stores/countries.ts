@@ -17,22 +17,17 @@ export const useCountriesStore = defineStore('countries', {
       )
       this.filteredCountries = this.countries
     },
-    filterCountriesByTerm(term: string) {
-      this.filteredCountries = this.countries.filter((country) =>
-        country.name.common.toLowerCase().includes(term.toLowerCase())
-      )
-    },
     filterCountriesByRegionAndTerm(term?: string, region?: string) {
       this.filteredCountries = this.countries
 
       if (region) {
         this.filteredCountries = this.filteredCountries.filter(
-          (country) => country.region.toLowerCase() === region.toLowerCase()
+          (country: Country) => country.region.toLowerCase() === region.toLowerCase()
         )
       }
 
       if (term) {
-        this.filteredCountries = this.filteredCountries.filter((country) =>
+        this.filteredCountries = this.filteredCountries.filter((country: Country) =>
           country.name.common.toLowerCase().includes(term.toLowerCase())
         )
       }
