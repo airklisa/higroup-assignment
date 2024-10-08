@@ -29,6 +29,11 @@ header {
           color: $color-main;
           border-bottom: 1px solid $color-main;
         }
+
+        &.active {
+          color: $color-main;
+          border-bottom: 1px solid $color-main;
+        }
       }
     }
   }

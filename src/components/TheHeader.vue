@@ -11,9 +11,9 @@ import { RouterLink } from 'vue-router'
         <span>Dark</span>
       </div>
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/compare">Compare</RouterLink>
-        <RouterLink to="/favorites">Favorites</RouterLink>
+        <RouterLink to="/" active-class="active">Home</RouterLink>
+        <RouterLink to="/compare" active-class="active">Compare</RouterLink>
+        <RouterLink to="/favorites" active-class="active">Favorites</RouterLink>
       </nav>
     </div>
   </header>
