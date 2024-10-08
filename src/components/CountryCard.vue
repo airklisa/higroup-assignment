@@ -1,10 +1,19 @@
 <script setup lang="ts">
-import { PropType } from 'vue'
-import type { Country } from '@/types/country.type'
-
 defineProps({
-  country: {
-    type: Object as PropType<Country>,
+  flag: {
+    type: String,
+    required: true
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  region: {
+    type: String,
+    required: true
+  },
+  population: {
+    type: Number,
     required: true
   }
 })
@@ -12,7 +21,12 @@ defineProps({
 
 <template>
   <div class="country-card">
-    {{ country.name.common }} {{ country.cca3 }} {{ country.capital[0] }}
+    <div class="country-card-content">
+      <img :src="flag" :alt="name" />
+      <p><span>Name:</span> {{ name }}</p>
+      <p><span>Region:</span> {{ region }}</p>
+      <p><span>Population:</span> {{ population }}</p>
+    </div>
   </div>
 </template>
 

@@ -22,7 +22,13 @@ const navigateToCountry = (country: Country) => {
   <section class="country-cards">
     <ul>
       <li v-for="country in countries" :key="country.cca3">
-        <CountryCard :country="country" @click="navigateToCountry(country)" />
+        <CountryCard
+          :flag="country.flags.png"
+          :name="country.name.common"
+          :region="country.region"
+          :population="country.population"
+          @click="navigateToCountry(country)"
+        />
       </li>
     </ul>
   </section>

@@ -8,12 +8,38 @@
   height: 300px;
   padding: 20px;
   border-radius: 10px;
-  border: 1px solid $color-black;
-  background-color: white;
+  border: 1px solid $color-gray;
+  background-color: $color-white;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: all 0.3s;
 
   &:hover {
-    transform: scale(1.01);
+    transform: scale(1.03);
+    border: 1px solid $color-main;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    img {
+      width: 190px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10%;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 18px;
+      font-weight: 300;
+
+      span {
+        font-weight: 500;
+      }
+    }
   }
 }
