@@ -7,17 +7,12 @@ import { useRouter } from 'vue-router'
 const countriesStore = useCountriesStore()
 const router = useRouter()
 
-onMounted(async () => {
-  await countriesStore.fetchCountries()
-  console.log('Fetched countries:', countriesStore.countries)
-}) // move this to App.vue
-
 const countries: ComputedRef<Country[]> = computed(() => countriesStore.countries)
 
 const navigateToCountry = (country: Country) => {
   router.push({
     name: 'country-details',
-    query: { countryCode: country.cca3 }
+    params: { countryCode: country.cca3 }
   })
 }
 </script>

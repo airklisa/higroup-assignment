@@ -15,7 +15,7 @@ const router = createRouter({
       component: () => import('../views/CompareView.vue')
     },
     {
-      path: '/country-details',
+      path: '/country/:countryCode',
       name: 'country-details',
       component: () => import('../views/CountryView.vue')
     }

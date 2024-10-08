@@ -8,7 +8,7 @@ const route = useRoute()
 const countriesStore = useCountriesStore()
 const router = useRouter()
 
-const countryCode = route.query.countryCode as string
+const countryCode = route.params.countryCode as string
 
 const country = computed(() => {
   return countriesStore.getCountryByCode(countryCode)

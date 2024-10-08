@@ -1,5 +1,14 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+import { useCountriesStore } from '@/stores/countries'
+
+const countriesStore = useCountriesStore()
+
+onMounted(async () => {
+  await countriesStore.fetchCountries()
+  console.log('Fetched countries:', countriesStore.countries)
+}) // move this to App.vue
 </script>
 
 <template>
