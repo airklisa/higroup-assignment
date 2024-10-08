@@ -19,6 +19,9 @@ export const useCountriesStore = defineStore('countries', {
   getters: {
     getCountryByCode: (state) => (code: string) => {
       return state.countries.find((country: Country) => country.cca3 === code)
+    },
+    getCountryNameByCode: (state) => (code: string) => {
+      return state.countries.find((country: Country) => country.cca3 === code)?.name.common
     }
   }
 })

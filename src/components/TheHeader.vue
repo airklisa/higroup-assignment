@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 
 <template>
   <header>
-    <span class="logo">CountryExplorer</span>
+    <RouterLink to="/" class="logo">CountryExplorer</RouterLink>
     <div class="nav-wrapper">
       <div class="theme-switch">
         <span>Light</span>

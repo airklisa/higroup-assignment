@@ -9,7 +9,6 @@ const countriesStore = useCountriesStore()
 
 onMounted(async () => {
   await countriesStore.fetchCountries()
-  console.log('Fetched countries:', countriesStore.countries)
 })
 </script>
 
@@ -20,7 +19,7 @@ onMounted(async () => {
     <RouterView />
   </div>
 
-  <TheFooter />
+  <TheFooter style="margin-top: 50px" />
 </template>
 
 <style lang="scss">
