@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import { useCountriesStore } from '@/stores/countries'
+import FavoritesIcon from './FavoritesIcon.vue'
 
 defineProps({
   flag: {
@@ -47,7 +48,10 @@ const countriesStore = useCountriesStore()
 <template>
   <div class="country-details">
     <div class="country-details-content">
-      <h1>{{ name }}</h1>
+      <div class="name">
+        <h1>{{ name }}</h1>
+        <FavoritesIcon />
+      </div>
       <img :src="flag" :alt="name" />
       <p><span>Region:</span> {{ region }}</p>
       <p><span>Population:</span> {{ population }}</p>

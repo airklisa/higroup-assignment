@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import FavoritesIcon from './FavoritesIcon.vue'
+
 defineProps({
   flag: {
     type: String,
@@ -21,6 +23,7 @@ defineProps({
 
 <template>
   <div class="country-card">
+    <FavoritesIcon />
     <div class="country-card-content">
       <img :src="flag" :alt="name" />
       <p><span>Name:</span> {{ name }}</p>
