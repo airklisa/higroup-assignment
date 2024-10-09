@@ -22,4 +22,5 @@ export type Country = {
   currencies: Record<string, Currency>
   languages: Record<string, Language>
   borders: string[]
+  isFavorite?: boolean
 }

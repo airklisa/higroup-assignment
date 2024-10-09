@@ -2,7 +2,7 @@
 import { ref, defineEmits, type PropType } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 
-const props = defineProps({
+defineProps({
   items: {
     type: Array as PropType<string[]>,
     required: true
@@ -43,7 +43,14 @@ onClickOutside(targetRef, () => {
     <button @click="show = !show">{{ selectedOption || 'Region' }}</button>
     <div v-if="show">
       <ul>
-        <li v-for="item in items" :key="item" @click="emitItemName(item)">{{ item }}</li>
+        <li
+          v-for="item in items"
+          :key="item"
+          @click="emitItemName(item)"
+          :class="{ 'active-item': item === selectedOption }"
+        >
+          {{ item }}
+        </li>
       </ul>
     </div>
   </div>

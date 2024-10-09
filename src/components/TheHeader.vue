@@ -24,7 +24,6 @@ const handleSwitchValue = (value: boolean) => {
       <nav>
         <RouterLink to="/" active-class="active"> Home </RouterLink>
         <RouterLink to="/compare" active-class="active"> Compare </RouterLink>
-        <RouterLink to="/favorites" active-class="active"> Favorites </RouterLink>
       </nav>
     </div>
   </header>

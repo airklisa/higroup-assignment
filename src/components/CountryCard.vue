@@ -17,13 +17,20 @@ defineProps({
   population: {
     type: Number,
     required: true
+  },
+  isFavorite: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
+
+defineEmits(['toggleFavorite'])
 </script>
 
 <template>
   <div class="country-card">
-    <FavoritesIcon />
+    <FavoritesIcon @click.stop="$emit('toggleFavorite')" :class="{ 'is-favorite': isFavorite }" />
     <div class="country-card-content">
       <img :src="flag" :alt="name" />
       <p><span>Name:</span> {{ name }}</p>
