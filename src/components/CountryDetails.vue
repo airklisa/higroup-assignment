@@ -53,12 +53,14 @@ const countriesStore = useCountriesStore()
         <FavoritesIcon />
       </div>
       <img :src="flag" :alt="name" />
-      <p><span>Region:</span> {{ region }}</p>
-      <p><span>Population:</span> {{ population }}</p>
-      <p><span>Capital:</span> {{ capital.join(', ') }}</p>
-      <p><span>Area:</span> {{ area }}km²</p>
-      <p><span>Currencies:</span> {{ currencies.join(', ') }}</p>
-      <p><span>Languages:</span> {{ languages.join(', ') }}</p>
+      <div class="info">
+        <div class="info-cell"><span>Region:</span> {{ region }}</div>
+        <div class="info-cell"><span>Population:</span> {{ population }}</div>
+        <div class="info-cell"><span>Capital:</span> {{ capital.join(', ') }}</div>
+        <div class="info-cell"><span>Area:</span> {{ area }}km²</div>
+        <div class="info-cell"><span>Currencies:</span> {{ currencies.join(', ') }}</div>
+        <div class="info-cell"><span>Languages:</span> {{ languages.join(', ') }}</div>
+      </div>
       <p>
         <span>Neighbors: </span>
         <RouterLink
