@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCountriesStore } from '@/stores/countries'
 import type { Country } from '@/types/country.type'
@@ -16,6 +16,10 @@ const navigateToCountry = (country: Country) => {
     params: { countryCode: country.cca3 }
   })
 }
+
+onBeforeUnmount(() => {
+  countriesStore.resetCountriesFilter()
+})
 </script>
 
 <template>

@@ -36,6 +36,10 @@ export const useCountriesStore = defineStore('countries', {
 
       this.currentPage = 1
     },
+    resetCountriesFilter() {
+      this.filteredCountries = this.countries
+      this.currentPage = 1
+    },
     setPage(page: number) {
       this.currentPage = page
     }
