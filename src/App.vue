@@ -27,7 +27,7 @@ onMounted(async () => {
       <RouterView />
     </div>
 
-    <TheFooter style="margin-top: 50px" />
+    <TheFooter />
   </div>
 </template>
 
