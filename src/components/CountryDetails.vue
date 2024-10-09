@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { useCountriesStore } from '@/stores/countries'
+import type { Neighbors } from '@/types/neighbors.type'
 import FavoritesIcon from './FavoritesIcon.vue'
 
 defineProps({
@@ -37,8 +37,8 @@ defineProps({
     required: true
   },
   neighbors: {
-    type: Array as PropType<string[] | null>,
-    default: null
+    type: Array as PropType<Neighbors[]>,
+    required: true
   },
   isFavorite: {
     type: Boolean,
@@ -48,8 +48,6 @@ defineProps({
 })
 
 defineEmits(['toggleFavorite', 'goBack'])
-
-const countriesStore = useCountriesStore()
 </script>
 
 <template>
@@ -96,8 +94,12 @@ const countriesStore = useCountriesStore()
       <div class="neighbors">
         <span>Neighbors: </span>
         <div v-if="neighbors?.length">
-          <RouterLink :to="`/country/${item}`" v-for="(item, index) in neighbors" :key="index"
-            >{{ countriesStore.getCountryNameByCode(item) }}
+          <RouterLink
+            :to="`/country/${item.countryCode}`"
+            v-for="(item, index) in neighbors"
+            :key="index"
+          >
+            {{ item.name }}
           </RouterLink>
         </div>
         <span v-else class="none"> None</span>

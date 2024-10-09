@@ -3,6 +3,7 @@ import { computed, watch, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCountriesStore } from '@/stores/countries'
 import CountryDetails from '@/components/CountryDetails.vue'
+import type { Neighbors } from '@/types/neighbors.type'
 
 const router = useRouter()
 const route = useRoute()
@@ -19,6 +20,17 @@ watch(
 
 const country = computed(() => {
   return countriesStore.getCountryByCode(countryCode.value)
+})
+
+const countryNeighbors = computed<Neighbors[]>(() => {
+  return (
+    country.value?.borders?.map((countryCode: string) => {
+      return {
+        name: countriesStore.getCountryNameByCode(countryCode) || '',
+        countryCode: countryCode
+      }
+    }) || []
+  )
 })
 </script>
 
@@ -40,7 +52,7 @@ const country = computed(() => {
         )
       "
       :languages="String(Object.values(country.languages).join(', '))"
-      :neighbors="country.borders"
+      :neighbors="countryNeighbors"
       :isFavorite="country.isFavorite"
       @toggleFavorite="countriesStore.toggleFavoriteCountry(country.cca3)"
       @goBack="router.push('/')"
