@@ -9,7 +9,10 @@ header {
   a.logo {
     font-size: 24px;
     font-weight: 600;
-    color: $color-main;
+
+    span {
+      color: $color-main;
+    }
   }
 
   .theme-switch {

@@ -14,7 +14,7 @@ const handleSwitchValue = (value: boolean) => {
 
 <template>
   <header>
-    <RouterLink to="/" class="logo">CountryExplorer</RouterLink>
+    <RouterLink to="/" class="logo">Country<span>Explorer</span></RouterLink>
     <div class="nav-wrapper">
       <div class="theme-switch">
         <span>Light</span>
