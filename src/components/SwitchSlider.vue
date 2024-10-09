@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const props = defineProps({
+  currentSwitchValue: {
+    type: Boolean,
+    required: false,
+    default: false
+  }
+})
+
 const emit = defineEmits(['updateSwitchValue'])
 
-const isOn = ref(false)
+const isOn = ref<boolean>(props.currentSwitchValue)
 
 const toggle = () => {
   isOn.value = !isOn.value

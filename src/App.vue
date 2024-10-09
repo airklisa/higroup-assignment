@@ -11,6 +11,9 @@ const themeStore = useThemeStore()
 
 const isDarkTheme = computed(() => themeStore.isDarkTheme)
 
+const prefersDarkScheme: boolean = window.matchMedia('(prefers-color-scheme: dark)').matches
+themeStore.setDarkTheme(prefersDarkScheme)
+
 onMounted(async () => {
   await countriesStore.fetchCountries()
 })

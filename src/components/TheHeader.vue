@@ -1,12 +1,13 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useThemeStore } from '@/stores/theme'
 import SwitchSlider from './SwitchSlider.vue'
 
 const themeStore = useThemeStore()
+const isDarkTheme = computed(() => themeStore.isDarkTheme)
 
 const handleSwitchValue = (value: boolean) => {
-  console.log(value)
   themeStore.setDarkTheme(value)
 }
 </script>
@@ -17,7 +18,7 @@ const handleSwitchValue = (value: boolean) => {
     <div class="nav-wrapper">
       <div class="theme-switch">
         <span>Light</span>
-        <SwitchSlider @updateSwitchValue="handleSwitchValue" />
+        <SwitchSlider :current-switch-value="isDarkTheme" @updateSwitchValue="handleSwitchValue" />
         <span>Dark</span>
       </div>
       <nav>
