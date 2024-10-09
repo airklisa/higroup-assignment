@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { useThemeStore } from '@/stores/theme'
+import SwitchSlider from './SwitchSlider.vue'
+
+const themeStore = useThemeStore()
+
+const handleSwitchValue = (value: boolean) => {
+  console.log(value)
+  themeStore.setDarkTheme(value)
+}
 </script>
 
 <template>
@@ -8,12 +17,13 @@ import { RouterLink } from 'vue-router'
     <div class="nav-wrapper">
       <div class="theme-switch">
         <span>Light</span>
+        <SwitchSlider @updateSwitchValue="handleSwitchValue" />
         <span>Dark</span>
       </div>
       <nav>
-        <RouterLink to="/" active-class="active">Home</RouterLink>
-        <RouterLink to="/compare" active-class="active">Compare</RouterLink>
-        <RouterLink to="/favorites" active-class="active">Favorites</RouterLink>
+        <RouterLink to="/" active-class="active"> Home </RouterLink>
+        <RouterLink to="/compare" active-class="active"> Compare </RouterLink>
+        <RouterLink to="/favorites" active-class="active"> Favorites </RouterLink>
       </nav>
     </div>
   </header>

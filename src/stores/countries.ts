@@ -7,7 +7,7 @@ export const useCountriesStore = defineStore('countries', {
     countries: [] as Country[],
     filteredCountries: [] as Country[],
     currentPage: 1,
-    itemsPerPage: 12 // Number of countries per page
+    itemsPerPage: 15
   }),
   actions: {
     async fetchCountries() {

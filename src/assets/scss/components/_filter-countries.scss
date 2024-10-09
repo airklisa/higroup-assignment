@@ -1,0 +1,17 @@
+@import '../core/variables';
+
+.filter-countries {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &-content {
+    width: 75%;
+    display: flex;
+    gap: 30px;
+
+    .search {
+      flex-grow: 3;
+    }
+  }
+}

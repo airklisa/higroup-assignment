@@ -1,18 +1,21 @@
 @import '../core/variables';
 
 .dropdown-wrapper {
-  display: block;
   position: relative;
   width: 100px;
 
+  &.dark-theme {
+    div {
+      background-color: $color-black;
+    }
+  }
+
   button {
-    color: $color-black;
     padding: 10px;
     font-size: 16px;
     width: 100%;
     border-radius: 10px;
     border: 1px solid $color-gray;
-    background-color: $color-white;
     cursor: pointer;
   }
 
@@ -27,24 +30,23 @@
     background-color: $color-white;
     margin-top: 10px;
     z-index: 1;
-  }
 
-  div ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
 
-  div ul li {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    cursor: pointer;
-  }
+      li {
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        cursor: pointer;
 
-  div ul li:hover {
-    color: $color-main;
+        &:hover {
+          color: $color-main;
+        }
+      }
+    }
   }
 
   div[show] {

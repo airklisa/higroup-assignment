@@ -1,31 +1,14 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { useCountriesStore } from '@/stores/countries'
+import FilterCountries from '@/components/FilterCountries.vue'
 import CountryCards from '@/components/CountryCards.vue'
-import TheSearch from '@/components/TheSearch.vue'
-import TheDropdown from '@/components/TheDropdown.vue'
 import ThePagination from '@/components/ThePagination.vue'
-import { regions } from '@/helpers/regions'
 
 const countriesStore = useCountriesStore()
 
 const currentPage = computed<number>(() => countriesStore.currentPage)
 const totalPages = computed<number>(() => countriesStore.getTotalPages())
-
-const term = ref<string>('')
-const region = ref<string>('')
-
-const handleSearch = (value: string, type: 'term' | 'region') => {
-  if (type === 'term') {
-    term.value = value
-  }
-
-  if (type === 'region') {
-    region.value = value
-  }
-
-  countriesStore.filterCountriesByRegionAndTerm(term.value, region.value)
-}
 
 const handleChangePage = (type: 'add' | 'subtract') => {
   if (type === 'add') {
@@ -40,8 +23,7 @@ const handleChangePage = (type: 'add' | 'subtract') => {
 
 <template>
   <main>
-    <TheSearch @searchTermUpdated="(value) => handleSearch(value, 'term')" />
-    <TheDropdown :items="regions" @itemClicked="(value) => handleSearch(value, 'region')" />
+    <FilterCountries />
     <CountryCards />
     <ThePagination
       :current-page="currentPage"

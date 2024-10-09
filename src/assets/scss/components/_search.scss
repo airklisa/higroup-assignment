@@ -1,13 +1,10 @@
 @import '../core/variables';
 
 .search {
-  display: flex;
-  justify-content: center;
-
   .search-input {
+    width: 100%;
     padding: 10px;
     font-size: 1.2em;
-    width: 75%;
     border: 1px solid $color-gray;
     border-radius: 10px;
     box-sizing: border-box;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType } from 'vue'
+import type { PropType } from 'vue'
 import { useCountriesStore } from '@/stores/countries'
 
 defineProps({
@@ -58,7 +58,7 @@ const countriesStore = useCountriesStore()
       <p>
         <span>Neighbors: </span>
         <RouterLink
-          v-if="neighbors.length"
+          v-if="neighbors?.length"
           :to="`/country/${item}`"
           v-for="(item, index) in neighbors"
           :key="index"

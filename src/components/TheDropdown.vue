@@ -1,18 +1,23 @@
 <script setup lang="ts">
-import { ref, defineEmits, PropType } from 'vue'
+import { ref, defineEmits, type PropType } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 
 const props = defineProps({
   items: {
     type: Array as PropType<string[]>,
     required: true
+  },
+  isDarkTheme: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 
 const emit = defineEmits(['itemClicked'])
 
-const show: boolean = ref(false)
-const selectedOption: string = ref('')
+const show = ref<boolean>(false)
+const selectedOption = ref<string>('')
 const targetRef = ref<HTMLElement | null>(null)
 
 const emitItemName = (item: string) => {
@@ -34,7 +39,7 @@ onClickOutside(targetRef, () => {
 </script>
 
 <template>
-  <div class="dropdown-wrapper" ref="targetRef">
+  <div class="dropdown-wrapper" :class="{ 'dark-theme': isDarkTheme }" ref="targetRef">
     <button @click="show = !show">{{ selectedOption || 'Region' }}</button>
     <div v-if="show">
       <ul>

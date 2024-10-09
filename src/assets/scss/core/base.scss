@@ -50,14 +50,20 @@ button {
   cursor: pointer;
 }
 
-#app {
-  min-height: 100vh;
-}
-
 main {
   width: 100%;
   padding: 0 50px;
   margin-top: 20px;
+}
+
+.app-wrapper {
+  min-height: 100vh;
+
+  &.dark-theme {
+    background-color: $color-black;
+    color: $color-white;
+    border-color: $color-white;
+  }
 }
 
 .router-view-wrapper {

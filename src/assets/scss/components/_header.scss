@@ -12,6 +12,15 @@ header {
     color: $color-main;
   }
 
+  .theme-switch {
+    display: flex;
+    gap: 16px;
+
+    span {
+      font-weight: 500;
+    }
+  }
+
   .nav-wrapper {
     display: flex;
     gap: 3.5rem;
@@ -23,7 +32,6 @@ header {
       a {
         font-size: 1rem;
         font-weight: 500;
-        color: $color-black;
 
         &:hover {
           color: $color-main;

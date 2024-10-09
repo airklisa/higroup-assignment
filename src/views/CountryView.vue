@@ -8,7 +8,7 @@ import CountryDetails from '@/components/CountryDetails.vue'
 const route = useRoute()
 const countriesStore = useCountriesStore()
 
-const countryCode: string = ref(route.params.countryCode as string)
+const countryCode = ref<string>(route.params.countryCode as string)
 
 watch(
   () => route.params,

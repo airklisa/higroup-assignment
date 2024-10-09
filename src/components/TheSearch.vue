@@ -7,8 +7,11 @@ const emit = defineEmits(['searchTermUpdated'])
 const searchValue = ref('')
 const debouncedSearchValue = useDebounce(searchValue, 300)
 
-const updateValue = (event) => {
-  searchValue.value = event.target.value
+const updateValue = (event: Event) => {
+  if (event.target !== null) {
+    const target = event.target as HTMLInputElement
+    searchValue.value = target.value
+  }
 }
 
 watch(debouncedSearchValue, (newVal) => {
