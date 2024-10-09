@@ -18,6 +18,10 @@ const router = createRouter({
       path: '/country/:countryCode',
       name: 'country-details',
       component: () => import('../views/CountryView.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
   ]
 })
