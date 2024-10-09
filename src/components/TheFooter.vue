@@ -1,9 +1,12 @@
 <template>
   <footer>
-    <p>Created by: Mihajlo Radic for higroup | &copy; 2024 CountryExplorer</p>
+    <p>
+      <span>Created by</span> <a href="https://klisa.dev/" target="_blank">Mihajlo Radić</a> for
+      <a href="https://www.higroup.si/" target="_blank">higroup</a> | &copy; 2024 CountryExplorer
+    </p>
   </footer>
 </template>
 
 <style scoped lang="scss">
-/* Your component's styles here */
+@import '../assets/scss/components/footer';
 </style>

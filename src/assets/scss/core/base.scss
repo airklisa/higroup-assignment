@@ -58,11 +58,17 @@ main {
 
 .app-wrapper {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $color-white;
+  transition: background-color 0.3s ease;
 
   &.dark-theme {
     background-color: $color-black;
     color: $color-white;
     border-color: $color-white;
+    transition: background-color 0.3s ease;
   }
 }
 
