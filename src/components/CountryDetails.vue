@@ -21,7 +21,7 @@ defineProps({
     required: true
   },
   capital: {
-    type: Array as PropType<string[]>,
+    type: String,
     required: true
   },
   area: {
@@ -29,18 +29,25 @@ defineProps({
     required: true
   },
   currencies: {
-    type: Array as PropType<string[]>,
+    type: String,
     required: true
   },
   languages: {
-    type: Array as PropType<string[]>,
+    type: String,
     required: true
   },
   neighbors: {
     type: Array as PropType<string[] | null>,
     default: null
+  },
+  isFavorite: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
+
+defineEmits(['toggleFavorite', 'goBack'])
 
 const countriesStore = useCountriesStore()
 </script>
@@ -49,29 +56,52 @@ const countriesStore = useCountriesStore()
   <div class="country-details">
     <div class="country-details-content">
       <div class="name">
+        <button @click="$emit('goBack')">&lt;</button>
         <h1>{{ name }}</h1>
-        <FavoritesIcon />
+        <FavoritesIcon @click="$emit('toggleFavorite')" :class="{ 'is-favorite': isFavorite }" />
       </div>
       <img :src="flag" :alt="name" />
       <div class="info">
-        <div class="info-cell"><span>Region:</span> {{ region }}</div>
-        <div class="info-cell"><span>Population:</span> {{ population }}</div>
-        <div class="info-cell"><span>Capital:</span> {{ capital.join(', ') }}</div>
-        <div class="info-cell"><span>Area:</span> {{ area }}km²</div>
-        <div class="info-cell"><span>Currencies:</span> {{ currencies.join(', ') }}</div>
-        <div class="info-cell"><span>Languages:</span> {{ languages.join(', ') }}</div>
+        <div class="info-cell">
+          <span>Region:</span>
+          <span v-if="region">{{ region }}</span>
+          <span v-else>None</span>
+        </div>
+        <div class="info-cell">
+          <span>Population:</span>
+          <span v-if="population">{{ population }}</span>
+          <span v-else>None</span>
+        </div>
+        <div class="info-cell">
+          <span>Capital:</span>
+          <span v-if="capital">{{ capital }}</span>
+          <span v-else>None</span>
+        </div>
+        <div class="info-cell">
+          <span>Area:</span>
+          <span v-if="area">{{ area }}km²</span>
+          <span v-else>None</span>
+        </div>
+        <div class="info-cell">
+          <span>Currencies:</span>
+          <span v-if="currencies">{{ currencies }}</span>
+          <span v-else>None</span>
+        </div>
+        <div class="info-cell">
+          <span>Languages:</span>
+          <span v-if="languages">{{ languages }}</span>
+          <span v-else>None</span>
+        </div>
       </div>
-      <p>
+      <div class="neighbors">
         <span>Neighbors: </span>
-        <RouterLink
-          v-if="neighbors?.length"
-          :to="`/country/${item}`"
-          v-for="(item, index) in neighbors"
-          :key="index"
-          >{{ countriesStore.getCountryNameByCode(item) }}
-        </RouterLink>
+        <div v-if="neighbors?.length">
+          <RouterLink :to="`/country/${item}`" v-for="(item, index) in neighbors" :key="index"
+            >{{ countriesStore.getCountryNameByCode(item) }}
+          </RouterLink>
+        </div>
         <span v-else class="none"> None</span>
-      </p>
+      </div>
     </div>
   </div>
 </template>

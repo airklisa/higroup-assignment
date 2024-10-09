@@ -14,8 +14,24 @@
 
     .name {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
       gap: 10px;
       margin-bottom: 30px;
+
+      button {
+        background-color: $color-main;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        font-size: 24px;
+        color: $color-white;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
 
       h1 {
         font-size: 48px;
@@ -26,16 +42,19 @@
         width: 50px;
         height: 50px;
         color: $color-main;
-        margin-top: 4px;
         cursor: pointer;
 
         &:hover {
           transform: scale(1.1);
-          color: #ffd700;
+          color: $color-gold;
         }
 
         &:active {
           transform: scale(0.9);
+        }
+
+        &.is-favorite {
+          color: $color-gold;
         }
       }
     }
@@ -73,7 +92,13 @@
       margin-bottom: 20px;
     }
 
-    p {
+    .neighbors {
+      display: flex;
+      gap: 10px;
+    }
+
+    p,
+    .neighbors {
       margin-bottom: 10px;
       font-weight: 400;
       font-size: 20px;

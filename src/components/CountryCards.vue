@@ -17,10 +17,6 @@ const navigateToCountry = (country: Country) => {
   })
 }
 
-const handleToggleFavorite = (countryCode: string) => {
-  countriesStore.toggleFavoriteCountry(countryCode)
-}
-
 onBeforeUnmount(() => {
   countriesStore.resetCountriesFilter()
 })
@@ -37,7 +33,7 @@ onBeforeUnmount(() => {
           :population="country.population"
           :is-favorite="country.isFavorite"
           @click="navigateToCountry(country)"
-          @toggle-favorite="handleToggleFavorite(country.cca3)"
+          @toggle-favorite="countriesStore.toggleFavoriteCountry(country.cca3)"
         />
       </li>
     </ul>

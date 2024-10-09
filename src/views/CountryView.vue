@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { onMounted, computed, type ComputedRef, watch, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, watch, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useCountriesStore } from '@/stores/countries'
-import type { Country } from '@/types/country.type'
 import CountryDetails from '@/components/CountryDetails.vue'
 
+const router = useRouter()
 const route = useRoute()
 const countriesStore = useCountriesStore()
 
@@ -30,11 +30,20 @@ const country = computed(() => {
       :name="country.name.common"
       :region="country.region"
       :population="country.population"
-      :capital="country.capital"
+      :capital="String(country.capital)"
       :area="country.area.toString()"
-      :currencies="Object.values(country.currencies).map((c) => c.name)"
-      :languages="Object.values(country.languages)"
+      :currencies="
+        String(
+          Object.values(country.currencies)
+            .map((c) => c.name)
+            .join(', ')
+        )
+      "
+      :languages="String(Object.values(country.languages).join(', '))"
       :neighbors="country.borders"
+      :isFavorite="country.isFavorite"
+      @toggleFavorite="countriesStore.toggleFavoriteCountry(country.cca3)"
+      @goBack="router.push('/')"
     />
   </main>
 </template>
