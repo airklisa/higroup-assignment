@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useCountriesStore } from '@/stores/countries'
 import type { Country } from '@/types/country.type'
 import CountryCard from '@/components/CountryCard.vue'
+import LoadingSpinner from './LoadingSpinner.vue'
 
 const countriesStore = useCountriesStore()
 const router = useRouter()
@@ -25,7 +26,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="country-cards">
+  <LoadingSpinner v-if="isLoading" />
+  <section class="country-cards" v-else>
     <div class="error" v-if="errorMessage">
       <p class="network">{{ errorMessage }}</p>
     </div>
