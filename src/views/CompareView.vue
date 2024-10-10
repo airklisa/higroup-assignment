@@ -1,29 +1,42 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useCountriesStore } from '@/stores/countries'
-import SearchDropdown from '@/components/SearchDropdown.vue'
+import { ref, toValue } from 'vue'
+import { useCountryComparator } from '@/helpers/countryComparator'
 import type { Country } from '@/types/country.type'
+import CountrySelector from '@/components/CountrySelector.vue'
 
-const countriesStore = useCountriesStore()
-const filteredCountries = computed<Country[]>(() => countriesStore.filteredCountries)
+const countryA = ref<Country | null>(null)
+const countryB = ref<Country | null>(null)
 
-const handleSearch = (term: string) => {
-  countriesStore.filterCountries(term)
-}
+const { comparisonResult } = useCountryComparator(countryA, countryB)
 
-const handleCountrySelected = (country: Country) => {
-  console.log(country)
+const handleCountrySelected = (selectedCountry: Country, country: 'A' | 'B') => {
+  if (country === 'A') {
+    countryA.value = selectedCountry
+    return
+  }
+
+  countryB.value = selectedCountry
 }
 </script>
 
 <template>
   <main>
-    <SearchDropdown
-      :countries="filteredCountries"
-      @searchTermUpdated="handleSearch"
-      @countrySelected="handleCountrySelected"
-    />
+    <h1>Compare countries</h1>
+    <div class="compare-countries">
+      <CountrySelector
+        @countrySelected="(selectedCountry: Country) => handleCountrySelected(selectedCountry, 'A')"
+      />
+      <p>VS</p>
+      <CountrySelector
+        @countrySelected="(selectedCountry: Country) => handleCountrySelected(selectedCountry, 'B')"
+      />
+    </div>
+    <div class="result">
+      <p>{{ comparisonResult }}</p>
+    </div>
   </main>
 </template>
 
-<style></style>
+<style scoped lang="scss">
+@import '../assets/scss/views/compare';
+</style>

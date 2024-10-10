@@ -8,10 +8,14 @@ defineProps({
   countries: {
     type: Array as PropType<Country[]>,
     required: true
+  },
+  isDarkTheme: {
+    type: Boolean,
+    default: false
   }
 })
 
-const emits = defineEmits(['searchTermUpdated', 'countrySelected'])
+const emits = defineEmits(['searchTermUpdated', 'countrySelected', 'clickedOutside'])
 
 const isDropdownActive = ref<boolean>(false)
 const targetRef = ref<HTMLElement | null>(null)
@@ -28,13 +32,18 @@ const handleCountrySelected = (country: Country) => {
 
 onClickOutside(targetRef, () => {
   isDropdownActive.value = false
+  emits('clickedOutside')
 })
 </script>
 
 <template>
   <section class="search-dropdown">
     <TheSearch @click="isDropdownActive = true" @searchTermUpdated="handleSearch" />
-    <div ref="targetRef" class="search-dropdown-content" :class="{ 'is-active': isDropdownActive }">
+    <div
+      ref="targetRef"
+      class="search-dropdown-content"
+      :class="{ 'is-active': isDropdownActive, 'is-dark-theme': isDarkTheme }"
+    >
       <ul v-if="countries.length">
         <li
           v-for="country in countries"

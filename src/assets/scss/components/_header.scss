@@ -38,12 +38,12 @@ header {
 
         &:hover {
           color: $color-main;
-          border-bottom: 1px solid $color-main;
+          text-decoration: underline;
         }
 
         &.active {
           color: $color-main;
-          border-bottom: 1px solid $color-main;
+          text-decoration: underline;
         }
       }
     }

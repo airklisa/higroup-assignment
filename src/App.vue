@@ -9,7 +9,7 @@ import TheFooter from '@/components/TheFooter.vue'
 const countriesStore = useCountriesStore()
 const themeStore = useThemeStore()
 
-const isDarkTheme = computed(() => themeStore.isDarkTheme)
+const isDarkTheme = computed<boolean>(() => themeStore.isDarkTheme)
 
 const prefersDarkScheme: boolean = window.matchMedia('(prefers-color-scheme: dark)').matches
 themeStore.setDarkTheme(prefersDarkScheme)
