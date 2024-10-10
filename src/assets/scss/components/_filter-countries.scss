@@ -1,4 +1,5 @@
 @import '../core/variables';
+@import '../core/mixins';
 
 .filter-countries {
   width: 100%;
@@ -10,77 +11,91 @@
     display: flex;
     gap: 30px;
 
+    @include md {
+      flex-direction: column-reverse;
+      width: 100%;
+    }
+
     .search {
       flex-grow: 3;
     }
 
-    .favorites-button {
+    .dropdown-favorties {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: $color-main;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      position: relative;
+      gap: 30px;
 
-      svg {
-        margin-left: 1px;
-        margin-bottom: 1px;
-        width: 35px;
-        height: 35px;
-        color: $color-white;
+      @include md {
+        justify-content: flex-end;
       }
 
-      &:hover {
+      .favorites-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $color-main;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        position: relative;
+
         svg {
-          color: $color-gold;
+          margin-left: 1px;
+          margin-bottom: 1px;
+          width: 35px;
+          height: 35px;
+          color: $color-white;
         }
 
-        &::after,
-        &::before {
-          opacity: 1;
-          visibility: visible;
-        }
-      }
+        &:hover {
+          svg {
+            color: $color-gold;
+          }
 
-      &.active {
-        svg {
-          color: $color-gold;
+          &::after,
+          &::before {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+
+        &.active {
+          svg {
+            color: $color-gold;
+          }
+
+          &::after {
+            content: 'Show all countries';
+          }
         }
 
         &::after {
-          content: 'Show all countries';
+          content: 'Show only favorites';
+          position: absolute;
+          bottom: -36px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: $color-main;
+          color: $color-white;
+          padding: 5px 10px;
+          border-radius: 4px;
+          font-size: 12px;
+          white-space: nowrap;
+          opacity: 0;
+          visibility: hidden;
         }
-      }
 
-      &::after {
-        content: 'Show only favorites';
-        position: absolute;
-        bottom: -36px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: $color-main;
-        color: $color-white;
-        padding: 5px 10px;
-        border-radius: 4px;
-        font-size: 12px;
-        white-space: nowrap;
-        opacity: 0;
-        visibility: hidden;
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-width: 5px;
-        border-style: solid;
-        border-color: transparent transparent $color-main transparent;
-        opacity: 0;
-        visibility: hidden;
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          border-width: 5px;
+          border-style: solid;
+          border-color: transparent transparent $color-main transparent;
+          opacity: 0;
+          visibility: hidden;
+        }
       }
     }
   }

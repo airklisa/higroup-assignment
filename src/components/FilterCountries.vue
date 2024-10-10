@@ -38,18 +38,20 @@ const handleFavoritesFilter = () => {
   <section class="filter-countries">
     <div class="filter-countries-content">
       <TheSearch @searchTermUpdated="(value) => handleSearch(value, 'term')" class="search" />
-      <TheDropdown
-        :items="regions"
-        :is-dark-theme="isDarkTheme"
-        @itemClicked="(value) => handleSearch(value, 'region')"
-      />
-      <button
-        @click="handleFavoritesFilter"
-        class="favorites-button"
-        :class="{ active: onlyFavorites }"
-      >
-        <FavoritesIcon />
-      </button>
+      <div class="dropdown-favorties">
+        <TheDropdown
+          :items="regions"
+          :is-dark-theme="isDarkTheme"
+          @itemClicked="(value) => handleSearch(value, 'region')"
+        />
+        <button
+          @click="handleFavoritesFilter"
+          class="favorites-button"
+          :class="{ active: onlyFavorites }"
+        >
+          <FavoritesIcon />
+        </button>
+      </div>
     </div>
   </section>
 </template>

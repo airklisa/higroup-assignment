@@ -93,7 +93,7 @@ defineEmits(['toggleFavorite', 'goBack'])
       </div>
       <div class="neighbors">
         <span>Neighbors: </span>
-        <div v-if="neighbors?.length">
+        <div v-if="neighbors?.length" class="links">
           <RouterLink
             :to="`/country/${item.countryCode}`"
             v-for="(item, index) in neighbors"

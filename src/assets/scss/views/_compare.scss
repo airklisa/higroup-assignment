@@ -1,4 +1,5 @@
 @import '../core/variables';
+@import '../core/mixins';
 
 h1 {
   text-align: center;
@@ -7,17 +8,29 @@ h1 {
 }
 
 .compare-countries {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 50px;
   gap: 30px;
 
+  @include lg {
+    padding: 0;
+  }
+
+  @include md {
+    flex-direction: column;
+  }
+
   p {
     font-size: 48px;
     font-weight: 500;
-
     position: relative;
+
+    @include md {
+      margin: 50px 0;
+    }
 
     &::before,
     &::after {
@@ -32,6 +45,14 @@ h1 {
       height: 75px;
       left: 50%;
       transform: translateX(-50%);
+
+      @include md {
+        top: calc(50% - 1px);
+        left: -100%;
+        height: 2px;
+        width: 75px;
+        transform: translateX(-50%);
+      }
     }
 
     &::after {
@@ -39,6 +60,14 @@ h1 {
       height: 75px;
       left: 50%;
       transform: translateX(-50%);
+
+      @include md {
+        top: calc(50% - 1px);
+        left: 200%;
+        height: 2px;
+        width: 75px;
+        transform: translateX(-50%);
+      }
     }
   }
 }
@@ -49,6 +78,10 @@ h1 {
   justify-content: center;
   padding: 0 75px;
   margin-top: 75px;
+
+  @include lg {
+    padding: 0;
+  }
 
   p {
     max-width: 1420px;
