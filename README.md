@@ -19,8 +19,7 @@ The app displays a list of countries and includes the following key features:
 
 ## Technologies used
 
--**Vue 3** with Composition API
-
+- **Vue 3** with Composition API
 - **Pinia** for state management
 - **Vue Router** for routing
 - **VueUse** for utility functions
