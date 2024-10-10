@@ -32,7 +32,10 @@ defineEmits(['toggleFavorite'])
   <div class="country-card">
     <FavoritesIcon @click.stop="$emit('toggleFavorite')" :class="{ 'is-favorite': isFavorite }" />
     <div class="country-card-content">
-      <img :src="flag" :alt="name" />
+      <div class="image-container">
+        <div class="placeholder"></div>
+        <img :src="dfdg" :alt="name" />
+      </div>
       <p><span>Name:</span> {{ name }}</p>
       <p><span>Region:</span> {{ region }}</p>
       <p><span>Population:</span> {{ population }}</p>
