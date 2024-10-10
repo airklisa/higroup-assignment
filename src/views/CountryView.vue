@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch, ref } from 'vue'
+import { computed, watch, ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCountriesStore } from '@/stores/countries'
 import CountryDetails from '@/components/CountryDetails.vue'
@@ -10,13 +10,6 @@ const route = useRoute()
 const countriesStore = useCountriesStore()
 
 const countryCode = ref<string>(route.params.countryCode as string)
-
-watch(
-  () => route.params,
-  (newParams) => {
-    countryCode.value = newParams.countryCode as string
-  }
-)
 
 const country = computed(() => {
   return countriesStore.getCountryByCode(countryCode.value)
@@ -32,6 +25,19 @@ const countryNeighbors = computed<Neighbors[]>(() => {
     }) || []
   )
 })
+
+onMounted(() => {
+  if (!country.value) {
+    router.push('/')
+  }
+})
+
+watch(
+  () => route.params,
+  (newParams) => {
+    countryCode.value = newParams.countryCode as string
+  }
+)
 </script>
 
 <template>
