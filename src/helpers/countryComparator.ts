@@ -14,9 +14,9 @@ export function useCountryComparator(countryA: Ref<Country | null>, countryB: Re
     let result = `${countryA.value.name.common} is ${countryA.value.area > countryB.value.area ? 'bigger' : 'smaller'} than ${countryB.value.name.common}. `
     result += `${countryA.value.name.common} has a ${countryA.value.population > countryB.value.population ? 'larger' : 'smaller'} population. `
 
-    const commonLanguages = Object.entries(countryA.value.languages)
-      .filter(([_codeA, nameA]) => Object.values(countryB.value?.languages || {}).includes(nameA))
-      .map((entry) => entry[1])
+    const commonLanguages = Object.values(countryA.value.languages).filter((nameA) =>
+      Object.values(countryB.value?.languages || {}).includes(nameA)
+    )
 
     if (commonLanguages.length > 0) {
       result += `These countries both have ${commonLanguages.join(', ')} as the official language. `
@@ -24,13 +24,13 @@ export function useCountryComparator(countryA: Ref<Country | null>, countryB: Re
       result += `${countryA.value.name.common} has ${Object.values(countryA.value.languages).join(', ')} as the official language, while ${countryB.value.name.common} has ${Object.values(countryB.value.languages).join(', ')} as the official language. `
     }
 
-    const commonCurrencies = Object.entries(countryA.value.currencies)
-      .filter(([_codeA, currencyA]) =>
+    const commonCurrencies = Object.values(countryA.value.currencies)
+      .filter((currencyA) =>
         Object.values(countryB.value?.currencies || {}).some(
           (currency) => currency.name === currencyA.name
         )
       )
-      .map((entry) => entry[1].name)
+      .map((currency) => currency.name)
 
     if (commonCurrencies.length > 0) {
       result += `These countries both use ${commonCurrencies.join(', ')} as a currency. `

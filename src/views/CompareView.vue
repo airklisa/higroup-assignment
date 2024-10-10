@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, toValue } from 'vue'
+import { ref } from 'vue'
 import { useCountryComparator } from '@/helpers/countryComparator'
 import type { Country } from '@/types/country.type'
 import CountrySelector from '@/components/CountrySelector.vue'
