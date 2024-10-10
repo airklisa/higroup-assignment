@@ -34,7 +34,7 @@ defineEmits(['toggleFavorite'])
     <div class="country-card-content">
       <div class="image-container">
         <div class="placeholder"></div>
-        <img :src="dfdg" :alt="name" />
+        <img :src="flag" :alt="name" />
       </div>
       <p><span>Name:</span> {{ name }}</p>
       <p><span>Region:</span> {{ region }}</p>
