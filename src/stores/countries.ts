@@ -20,20 +20,32 @@ export const useCountriesStore = defineStore('countries', {
     currentPage: 1,
     itemsPerPage: 15,
     favoriteCountries: loadFavorites() as string[],
-    onlyFavorites: false as boolean
+    onlyFavorites: false as boolean,
+    isLoading: false as boolean,
+    errorMessage: '' as string
   }),
   actions: {
     async fetchCountries() {
-      const response = await axios.get(
-        'https://restcountries.com/v3.1/all?fields=cca3,name,flags,population,region,capital,area,currencies,languages,borders'
-      )
-      this.countries = response.data
-        .sort((a: Country, b: Country) => a.name.common.localeCompare(b.name.common))
-        .map((country: Country) => ({
-          ...country,
-          isFavorite: this.favoriteCountries.includes(country.cca3)
-        }))
-      this.filteredCountries = this.countries
+      this.isLoading = true
+      this.errorMessage = ''
+
+      try {
+        const response = await axios.get(
+          'https://restcountries.com/v3.1/all?fields=cca3,name,flags,population,region,capital,area,currencies,languages,borders'
+        )
+        this.countries = response.data
+          .sort((a: Country, b: Country) => a.name.common.localeCompare(b.name.common))
+          .map((country: Country) => ({
+            ...country,
+            isFavorite: this.favoriteCountries.includes(country.cca3)
+          }))
+        this.filteredCountries = this.countries
+      } catch (error: any) {
+        this.errorMessage = 'Something went wrong: ' + error.message
+        console.log(this.errorMessage)
+      } finally {
+        this.isLoading = false
+      }
     },
     filterCountries(term?: string, region?: string) {
       this.filteredCountries = this.countries

@@ -14,7 +14,7 @@ defineEmits(['changePage'])
 </script>
 
 <template>
-  <div class="pagination">
+  <div class="pagination" v-if="totalPages > 0">
     <div class="pagination-controls">
       <button :disabled="currentPage === 1" @click="$emit('changePage', 'subtract')">&lt;</button>
 

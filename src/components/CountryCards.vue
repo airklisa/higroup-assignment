@@ -9,6 +9,8 @@ const countriesStore = useCountriesStore()
 const router = useRouter()
 
 const countries = computed<Country[]>(() => countriesStore.getPaginatedCountries())
+const errorMessage = computed<string>(() => countriesStore.errorMessage)
+const isLoading = computed<boolean>(() => countriesStore.isLoading)
 
 const navigateToCountry = (country: Country) => {
   router.push({
@@ -24,7 +26,13 @@ onBeforeUnmount(() => {
 
 <template>
   <section class="country-cards">
-    <ul>
+    <div class="error" v-if="errorMessage">
+      <p class="network">{{ errorMessage }}</p>
+    </div>
+    <div class="error" v-else-if="!countries.length">
+      <p>No countries</p>
+    </div>
+    <ul v-else>
       <li v-for="country in countries" :key="country.cca3">
         <CountryCard
           :flag="country.flags.png"

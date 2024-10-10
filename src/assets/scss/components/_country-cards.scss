@@ -1,7 +1,26 @@
-.country-cards ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-  justify-content: center;
-  margin-top: 50px;
+.country-cards {
+  .error {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 0 30px;
+
+    p {
+      font-size: 38px;
+      font-weight: 400;
+
+      &.network {
+        color: red;
+      }
+    }
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    margin-top: 50px;
+  }
 }
