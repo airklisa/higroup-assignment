@@ -10,7 +10,7 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/compare-countries',
+      path: '/compare',
       name: 'compare',
       component: () => import('../views/CompareView.vue')
     },

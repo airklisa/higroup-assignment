@@ -1,0 +1,65 @@
+@import '../core/variables';
+
+.search-dropdown {
+  position: relative;
+
+  &-content {
+    position: absolute;
+    min-height: 400px;
+    max-height: 600px;
+    width: 100%;
+    top: 120%;
+    left: 0;
+    right: 0;
+    border: 1px solid $color-gray;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    overflow-y: auto;
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+
+    ul {
+      li {
+        padding: 15px;
+        border-bottom: 1px solid $color-gray;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $color-main;
+          color: $color-white;
+        }
+
+        .country {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+
+          img {
+            width: 125px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 10px;
+          }
+
+          span {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+
+    .no-countries {
+      width: 100%;
+      min-height: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      font-weight: 500;
+    }
+  }
+}
